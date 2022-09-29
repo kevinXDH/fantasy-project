@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jay.fantasy.mapper.ResourceMapper">
+
+    <resultMap id="BaseResultMap" type="com.jay.fantasy.entity.Resource">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="uid" column="uid" jdbcType="INTEGER"/>
+            <result property="cid" column="cid" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="tag" column="tag" jdbcType="VARCHAR"/>
+            <result property="image" column="image" jdbcType="VARCHAR"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="star" column="star" jdbcType="INTEGER"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,uid,cid,
+        name,description,tag,
+        image,url,star,
+        sort,create_time,update_time,
+        deleted
+    </sql>
+
+    <update id="addStarById" parameterType="integer">
+        update resource set star = star+1 where id = #{id}
+    </update>
+
+    <update id="subStarById" parameterType="integer">
+        update resource set star = star-1 where id = #{id}
+    </update>
+
+    <select id="getIds" resultType="java.lang.Integer">
+        select id from resource
+    </select>
+</mapper>
